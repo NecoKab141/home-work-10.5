@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { reducer } from "./reducers";
+import contactsReducer from "./contactsSlice";
 
 export const store = configureStore({
-  reducer: reducer,
+  reducer: contactsReducer,
 });

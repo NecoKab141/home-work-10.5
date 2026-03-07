@@ -7,7 +7,8 @@ import ContactList from "./components/ContactList/ContactList.jsx";
 import Filter from "./components/Filter/Filter.jsx";
 import { Box, Title1, Title2 } from "./App.js";
 
-import { addContact, deleteContact, changeFilter } from "./redux/actions";
+// import { addContact, deleteContact, changeFilter } from "./redux/actions";
+import { addContact, deleteContact, changeFilter } from "./redux/contactsSlice";
 
 function App() {
   const dispatch = useDispatch();
