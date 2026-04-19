@@ -9,12 +9,13 @@ import { Box, Title1, Title2 } from "./App.js";
 
 // import { addContact, deleteContact, changeFilter } from "./redux/actions";
 import { addContact, deleteContact, changeFilter } from "./redux/contactsSlice";
+import { selectFilteredContacts, selectFilter } from "./redux/selectors/contactsSelector.js";
 
 function App() {
   const dispatch = useDispatch();
 
-  const contacts = useSelector((state) => state.contacts);
-  const filter = useSelector((state) => state.filter);
+  const contacts = useSelector(selectFilteredContacts);
+  const filter = useSelector(selectFilter);
 
   const handleAddContact = (name, number) => {
     const exists = contacts.some(
