@@ -54,21 +54,16 @@ const contactsSlice = createSlice({
   name: "contacts",
   initialState,
   reducers: {
-    addContact(state, action) {
+     addContact(state, action) {
       const contact = action.payload;
-
       state.contacts.byId[contact.id] = contact;
       state.contacts.allIds.push(contact.id);
     },
 
     deleteContact(state, action) {
       const id = action.payload;
-
       delete state.contacts.byId[id];
-
-      state.contacts.allIds = state.contacts.allIds.filter(
-        item => item !== id
-      );
+      state.contacts.allIds = state.contacts.allIds.filter(i => i !== id);
     },
 
     changeFilter(state, action) {

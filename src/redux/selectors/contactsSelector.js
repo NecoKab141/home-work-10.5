@@ -21,18 +21,16 @@
 
 import { createSelector } from "@reduxjs/toolkit";
 
-export const selectContactsState = (state) => state.contacts;
-export const selectFilter = (state) => state.filter;
+export const selectContactsState = state => state.contacts.contacts;
+export const selectFilter = state => state.contacts.filter;
 
 export const selectContacts = createSelector(
   [selectContactsState],
-  (contactsState) => {
+  (data) => {
     const result = [];
-
-    for (let id of contactsState.allIds) {
-      result.push(contactsState.byId[id]);
+    for (let id of data.allIds) {
+      result.push(data.byId[id]);
     }
-
     return result;
   }
 );
@@ -40,18 +38,15 @@ export const selectContacts = createSelector(
 export const selectFilteredContacts = createSelector(
   [selectContacts, selectFilter],
   (contacts, filter) => {
-    const normalized = filter.trim().toLowerCase();
-
-    if (!normalized) return contacts;
-
+    const norm = filter.toLowerCase();
     const result = [];
 
-    for (let contact of contacts) {
+    for (let c of contacts) {
       if (
-        contact.name.toLowerCase().includes(normalized) ||
-        contact.number.toLowerCase().includes(normalized)
+        c.name.toLowerCase().includes(norm) ||
+        c.number.toLowerCase().includes(norm)
       ) {
-        result.push(contact);
+        result.push(c);
       }
     }
 
